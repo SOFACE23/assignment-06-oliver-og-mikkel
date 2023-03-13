@@ -9,16 +9,20 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
 
 using boost::asio::ip::tcp;
 
-constexpr size_t image_size = 100*100;
+constexpr size_t image_size = 17618; // the original image is 17.618 bytes
 
 void save_image(char* data, size_t len)
 {
-  // TODO
+    std::ofstream myfile; // creates variable to represent the image of our copycat
+    myfile.open("copycat.jpg", std::ios::binary); // if "copycat.jpg" doesn't exist, it creates such file or else it just overrides
+
+    myfile.write(data, len); // writing the data given from the server into our newly created/opened file
 }
 
 int main(int argc, char* argv[])
